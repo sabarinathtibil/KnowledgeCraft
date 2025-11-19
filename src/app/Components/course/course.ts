@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CourseService } from '../../Services/course-service';
 
 @Component({
   selector: 'app-course',
@@ -8,7 +9,14 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
   templateUrl: './course.html',
   styleUrl: './course.css',
 })
-export class Course {
+export class Course implements OnInit{
+  data:any[]=[];
+  ngOnInit(): void {
+    
+    // this.data=localStorage.getItem('Course')||[]
+  }
+
+
 // courseForm: FormGroup;
 
   // constructor(private fb: FormBuilder) {
@@ -30,20 +38,26 @@ export class Course {
   //   console.log('Form Value:', this.courseForm.value);
   //   // here you can call API or service
   // }
+  date=new Date()
+  setstatus:boolean=false;
 
   userForm:FormGroup;
-  constructor(private fb:FormBuilder){
-    this.userForm=fb.group({
+  constructor(private fb:FormBuilder,private courseservice:CourseService){
+    this.userForm=this.fb.group({
+      id:[Date.now()],
       title:['',Validators.required],
       subtitle:['',Validators.required],
       modules:['',Validators.required],
       createdBy:['',Validators.required],
-      createdAt:[Date.now().toLocaleString()]
+      createdAt:[this.date.toLocaleDateString()]
     })
   }
   onsubmit(){
     console.log(this.userForm.value);
-    
+    this.courseservice.setCourse(this.userForm.value)
   }
 
+  toogle(){
+    this.setstatus=!this.setstatus
+  }
 }
