@@ -1,0 +1,60 @@
+<div class="container">
+    <!-- <div class="course">
+      <form [formGroup]="courseForm" (ngSubmit)="onSubmit()" class="form-wrapper">
+  <div>
+    <label>Title</label>
+    <input type="text" formControlName="title" />
+    <div *ngIf="courseForm.get('title')?.touched && courseForm.get('title')?.invalid">
+      <small>Title is required</small>
+    </div>
+  </div>
+
+
+  <div>
+    <label>Subtitle</label>
+    <input type="text" formControlName="subtitle" />
+  </div>
+
+  <div>
+    <label>Modules</label>
+    <input type="text" formControlName="modules" placeholder="e.g. HTML, CSS, JS" />
+    <div *ngIf="courseForm.get('modules')?.touched && courseForm.get('modules')?.invalid">
+      <small>Modules is required</small>
+    </div>
+  </div>
+
+  <div>
+    <label>Created By</label>
+    <input type="text" formControlName="createdBy" />
+    <div *ngIf="courseForm.get('createdBy')?.touched && courseForm.get('createdBy')?.invalid">
+      <small>Created By is required</small>
+    </div>
+  </div>
+
+  <div>
+    <label>Created Date</label>
+    <input type="date" formControlName="createdDate" />
+    <div *ngIf="courseForm.get('createdDate')?.touched && courseForm.get('createdDate')?.invalid">
+      <small>Created Date is required</small>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="courseForm.invalid">
+    Save
+  </button>
+</form>
+
+<pre>{{ courseForm.value | json }}</pre>
+
+    </div> -->
+
+    <form [formGroup]="userForm" (ngSubmit)="onsubmit()">
+        <input type="text" formControlName="title">
+        <input type="text" formControlName="subtitle">
+        <input type="text" formControlName="modules">
+        <input type="text" formControlName="createdBy">
+        <input type="text" formControlName="createdDate">
+    </form>
+    <pre>{{ userForm.value | json }}</pre>
+
+</div>
