@@ -1,0 +1,28 @@
+<div class="layout-container">
+  <nav class="nav">
+    <div class="nav-left">
+      <img
+        src="https://i.pinimg.com/1200x/ba/62/7d/ba627d9acc597de702d4817043ce8273.jpg"
+        alt="logo"
+        class="logo"
+      />
+      <h2 class="brand">KnowledgeCraft</h2>
+    </div>
+
+    <ul class="nav-links">
+      <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+      <li><a routerLink="/login" routerLinkActive="active">Login</a></li>
+      <li><a routerLink="/about" routerLinkActive="active">About</a></li>
+      <li><a routerLink="/courses" routerLinkActive="active">Courses</a></li>
+      <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main class="main">
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer class="footer">
+    <p>© 2024 KnowledgeCraft. All rights reserved.</p>
+  </footer>
+</div>
