@@ -4,5 +4,14 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class CourseService {
-  
+ setCourse(course: any) {
+  // Get existing courses
+  const existingCourses = JSON.parse(localStorage.getItem('courses') || '[]');
+
+  // Add new one
+  existingCourses.push(course);
+
+  // Save updated array back to localStorage
+  localStorage.setItem('courses', JSON.stringify(existingCourses));
+}
 }
