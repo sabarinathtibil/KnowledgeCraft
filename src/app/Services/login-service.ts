@@ -8,7 +8,16 @@ export
   email: string,
   password: string
 }
+
+export
+  interface Task {
+  id: string,
+  name: string,
+  email: string,
+  password: string
+}
 @Injectable({
+  providedIn: 'root',
   providedIn: 'root',
 })
 export class LoginService {
