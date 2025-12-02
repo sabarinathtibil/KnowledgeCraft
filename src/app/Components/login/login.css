@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+.subconatiner {
+    height: auto;
+    width: 100%;
+    max-width: 400px;
+    border: none;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background: white;
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    gap: 20px;
+}
+
+h1 {
+    color: #667eea;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+input {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 8px 0;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+input:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 8px rgba(102, 126, 234, 0.2);
+}
+
+input::placeholder {
+    color: #999;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+a {
+    color: #667eea;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+
+    cursor: pointer;
+}
+
+a:hover {
+    /* cursor: pointer; */
+    color: #764ba2;
+    text-decoration: underline;
+}
+
+
+.popup {
+    position: absolute;
+    color: #fff;
+    background-color: #DC0000;
+    padding: 6px 10px;
+    border-radius: 4px;
+    margin-top: 4px;
+    top: 10px;
+    left: 46%;
+    padding: 10px;
+    border-radius: 10px;
+}

@@ -22,4 +22,12 @@ export class LoginService {
   addUser(body: any) {
     return this.http.post(this.api_url, body);
   }
+
+  checkEmailExists(email: string) {
+    return this.http.get(`${this.api_url}?email=${email}`);
+  }
+
+  getAllUsers() {
+    return this.http.get(this.api_url);
+  }
 }
