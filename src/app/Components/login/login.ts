@@ -23,12 +23,10 @@ export class Login{
       next:(res)=>{
         const user = (res as any[]).find((u: any) => u.email === this.username && u.password === this.password);
         if (user) {
-          // successful login — replace with navigation/token logic as needed
           console.log('Login successful', user);
+          localStorage.setItem('userinfo',JSON.stringify(user));
           this.route.navigateByUrl('home')
-
         } else {
-          // failed login
           this.showPopup=true;
           setTimeout(() => {
             this.showPopup=false
