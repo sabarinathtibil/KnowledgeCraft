@@ -1,1 +1,13 @@
-<p>login works!</p>
+<div class="container">
+   <div class="subconatiner">
+     <h1>login page</h1>
+    <input type="text" [(ngModel)]="username">
+    <input type="text" [(ngModel)]="password">
+    <button type="button" (click)="login()">Login</button>
+    <a (click)="reg()">register here</a>
+   </div>
+</div>
+
+<div class="popup" *ngIf="showPopup">
+    <span>{{err_msg}}</span>
+</div>
