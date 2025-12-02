@@ -6,26 +6,9 @@ import { LoginService, Task } from '../../Services/login-service';
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
-export class Login implements OnInit{
+export class Login{
 
-  constructor(private loginService:LoginService){}
-  ngOnInit(): void {
-    this.regesterUser()
-  }
-  regesterUser(){
-    let body:Task={
-      id:Date.now().toString(),
-      name:'shashank',
-      email:'shashankr@gmail.com',
-      password:'Iamshashi'
-    }
-    this.loginService.addUser(body).subscribe({
-      next:(res)=>{
-        console.log(res);
-      },
-      error:(err)=>{
-        console.log(err);
-      }
-    })
-  }
+  constructor(private loginService: LoginService) { }
+ 
+  
 }
