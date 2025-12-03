@@ -11,7 +11,7 @@ export class QuestService {
   questURL = 'http://localhost:3000/quests';
 
   getQuest(){
-    this.http.get(this.questURL)
+    return this.http.get(this.questURL)
   }
 
   postQuest(data:any){

@@ -14,14 +14,15 @@ export interface QuestModel {
 
 @Component({
   selector: 'app-quests',
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './quests.html',
   styleUrl: './quests.css',
 })
-export class Quests {
+
+export class Quests implements OnInit{
   questName: string = '';
   questDesc: string = '';
-  questData:any[]=[]
+  questData: any[] = []
   bid: string = '';
 
   constructor(
@@ -29,31 +30,36 @@ export class Quests {
     private router: Router,
     private questService: QuestService
   ) {
-    route.queryParams.subscribe((p) => {
+  
+  }
+  ngOnInit(): void {
+      this.route.queryParams.subscribe((p) => {
       this.bid = p['bid'];
     });
+    this.questService.getQuest().subscribe({
+      next:(res:any)=>{
+        this.questData=res;
+      }
+    })
   }
 
   goToLesson() {
     let Quest: QuestModel = {
       bid: this.bid,
       qid: Date.now().toString(),
-      status: 'Assigned',
+      status: 'Created',
       qname: this.questName,
-      date:new Date().getDate().toString(),
+      date: new Date().getDate().toString(),
     };
     this.questData.push(Quest)
     console.log(this.questName);
-    
     console.log(Quest);
-    
-    this.questService.postQuest(Quest).subscribe((res)=>{
+    this.questService.postQuest(Quest).subscribe((res) => {
       console.log(res);
-      
     })
 
-    this.router.navigate(['/lessons'],{
-        queryParams:{qid:Quest.qid}
+    this.router.navigate(['/home/lessons'], {
+      queryParams: { qid: Quest.qid }
     })
   }
 }

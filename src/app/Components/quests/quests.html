@@ -1,5 +1,30 @@
-<div >
-    <input type="text" [(ngModel)]="questName" required>
-    <input type="text" [(ngModel)]="questDesc" required>
-    <button (click)="goToLesson()">Next</button>
+<div class="badge-container">
+    <div class="toolbar">
+        <div class="toolbar-left">
+            <input class="search-input" type="text" placeholder="enter  badge name." [(ngModel)]="questName" />
+            <input class="filter-input" type="text" placeholder="enter info...." [(ngModel)]="questDesc" />
+              <button class="btn primary" type="button" (click)="goToLesson()">Add Quests</button>
+        </div>
+        <!-- <div class="toolbar-right">
+            <button class="btn primary" type="button" (click)="addBadge()">Add Badge</button>
+        </div> -->
+    </div>
+
+    <div class="badges-grid">
+        <div class="badge-card" *ngFor="let b of questData">
+            <div class="badge-icon">{{ '🏅' }}</div>
+            <div class="badge-body">
+                <h3 class="badge-title">{{ b.qname }}</h3>
+                <p class="badge-desc">{{ b.status }}</p>
+                <div class="badge-actions">
+                    <button class="btn">View</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="badge-detail" *ngIf="selectedBadge">
+        <h2>{{ selectedBadge.name }}</h2>
+        <p>{{ selectedBadge.info }}</p>
+    </div> -->
 </div>

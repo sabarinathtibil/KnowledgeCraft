@@ -1,2 +1,27 @@
-<p>home works!</p>
-<app-badge></app-badge>
+<div class="conatiner">
+    <div class="header">
+        <h1>KC</h1>
+        <div class="prof-notif-container">
+            <div>not</div>
+            <div class="pic"> <img src="assets/pic1.png" alt="pic1"></div>
+            <div>
+                <p>{{userInfo.name}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="main-conent">
+        <router-outlet></router-outlet>
+    </div>
+    <div class="sidebar">
+        <nav>
+            <div class="links">
+                <a routerLink="/home/dashboard">Dashboard</a>
+                <a routerLink="/home/badge">Badges</a>
+                <a routerLink="/settings">Settings</a>
+            </div>
+            <div class="logout">
+                <a routerLink="/login">Logout</a>
+            </div>
+        </nav>
+    </div>
+</div>

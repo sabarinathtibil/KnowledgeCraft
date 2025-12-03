@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LessonService } from '../../Services/lesson-service';
+import { CommonModule } from '@angular/common';
 
 export interface lessonModel {
   qid: string;
@@ -15,11 +16,11 @@ export interface lessonModel {
 
 @Component({
   selector: 'app-lessons',
-  imports: [FormsModule],
+  imports: [FormsModule,CommonModule],
   templateUrl: './lessons.html',
   styleUrl: './lessons.css',
 })
-export class Lessons {
+export class Lessons implements OnInit {
   lessonName: string = '';
   lessonLink: string = '';
   qid: string = '';
@@ -30,16 +31,26 @@ export class Lessons {
     private lessonService: LessonService,
     private router:Router
   ) {
-    route.queryParams.subscribe((para) => {
+   
+  }
+
+  ngOnInit(): void {
+     this.route.queryParams.subscribe((para) => {
       this.qid = para['qid'];
     });
+
+    this.lessonService.getLesson().subscribe({
+      next:(res:any)=>{
+        this.lessonData=res
+      }
+    })
   }
 
   CreateBadge() {
     let lesson: lessonModel = {
       qid: this.qid,
       lid: Date.now().toString(),
-      status: 'Assigned',
+      status: 'Created',
       lname: this.lessonName,
       date: new Date().getDate().toString(),
       link: this.lessonLink,

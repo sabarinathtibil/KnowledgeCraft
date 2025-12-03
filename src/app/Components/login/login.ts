@@ -28,11 +28,20 @@ export class Login{
           this.route.navigateByUrl('home')
         } else {
           this.showPopup=true;
+            this.err_msg='Invalid username or password'
           setTimeout(() => {
             this.showPopup=false
           }, 3000);
           console.warn('Invalid username or password');
         }
+      },
+      error:(err)=>{
+        this.showPopup=true;
+        this.err_msg='Invalid username or password'
+          setTimeout(() => {
+            this.showPopup=false
+          }, 3000);
+          console.warn('Invalid username or password');
       }
     })
   } 
