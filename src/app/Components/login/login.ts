@@ -22,17 +22,17 @@ export class Login{
     this.loginService.getAllUsers().subscribe({
       next:(res)=>{
         const user = (res as any[]).find((u: any) => u.email === this.username && u.password === this.password);
-        if (user) {
           console.log('Login successful', user);
           localStorage.setItem('userinfo',JSON.stringify(user));
           this.route.navigateByUrl('home')
-        } else {
-          this.showPopup=true;
+      },
+      error:(err)=>{
+         this.showPopup=true;
+          this.err_msg='Invalid username or password'
           setTimeout(() => {
             this.showPopup=false
           }, 3000);
           console.warn('Invalid username or password');
-        }
       }
     })
   } 

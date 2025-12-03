@@ -12,15 +12,12 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class Register {  
   emailExistsError = false;
-
   constructor(private loginService: LoginService,private route:Router) { }
-
   userform = new FormGroup({
   name: new FormControl('', [Validators.required, Validators.minLength(3)]),
   email: new FormControl('', [Validators.required, Validators.email]),
   password: new FormControl('', [Validators.required, Validators.minLength(6)])
 });
-
   checkEmailExists = (control: AbstractControl): Promise<ValidationErrors | null> => {
     if (!control.value) {
       return Promise.resolve(null);
@@ -52,7 +49,6 @@ regesterUser() {
 
   const email = this.userform.get('email')?.value || '';
   
-  // Check if email already exists
   this.loginService.checkEmailExists(email).subscribe({
     next: (res: any) => {
       if (res && res.length > 0) {
@@ -61,7 +57,6 @@ regesterUser() {
         return;
       }
 
-      // Email doesn't exist, proceed with registration
       let body: Task = {
         id: Date.now().toString(),
         name: this.userform.get('name')?.value || '',

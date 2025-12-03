@@ -1,0 +1,101 @@
+<header class="header">
+  <div class="header-left">
+    <div class="logo">
+      <span class="logo-icon">📚</span>
+      <span class="logo-text">KnowledgeCraft</span>
+    </div>
+  </div>
+
+  <div class="header-center">
+    <div class="search-bar">
+      <input type="text" placeholder="Search courses, badges..." />
+      <button class="search-btn">🔍</button>
+    </div>
+  </div>
+
+  <div class="header-right">
+    <!-- Notification Center -->
+    <div class="notification-container">
+      <button
+        class="notification-btn"
+        (click)="toggleNotificationDropdown()"
+        [class.has-unread]="unreadCount > 0"
+      >
+        🔔
+        <span class="notification-badge" *ngIf="unreadCount > 0">
+          {{ unreadCount }}
+        </span>
+      </button>
+
+      <div class="notification-dropdown" *ngIf="showNotificationDropdown">
+        <div class="dropdown-header">
+          <h3>Notifications</h3>
+          <button
+            class="close-btn"
+            (click)="toggleNotificationDropdown()"
+          >
+            ✕
+          </button>
+        </div>
+
+        <div class="notification-list">
+          <div
+            *ngFor="let notif of notifications"
+            class="notification-item"
+            [class.unread]="!notif.read"
+            (click)="markNotificationAsRead(notif.id)"
+          >
+            <div class="notif-content">
+              <p class="notif-message">{{ notif.message }}</p>
+              <small class="notif-time">{{ notif.time }}</small>
+            </div>
+            <div class="notif-indicator" *ngIf="!notif.read"></div>
+          </div>
+
+          <div *ngIf="notifications.length === 0" class="no-notifications">
+            No notifications
+          </div>
+        </div>
+
+        <div class="dropdown-footer">
+          <button (click)="clearAllNotifications()" class="clear-btn">
+            Clear All
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Profile Menu -->
+    <div class="profile-container">
+      <button class="profile-btn" (click)="toggleProfileDropdown()">
+        <span class="profile-avatar">👤</span>
+        <span class="profile-name" *ngIf="userInfo">
+          {{ userInfo.name }}
+        </span>
+      </button>
+
+      <div class="profile-dropdown" *ngIf="showProfileDropdown">
+        <div class="profile-header" *ngIf="userInfo">
+          <div class="profile-avatar-large">👤</div>
+          <div class="profile-info">
+            <p class="profile-name-large">{{ userInfo.name }}</p>
+            <p class="profile-email">{{ userInfo.email }}</p>
+          </div>
+        </div>
+
+        <div class="profile-menu">
+          <button (click)="goToProfile()" class="profile-menu-item">
+            👤 My Profile
+          </button>
+          <button (click)="goToSettings()" class="profile-menu-item">
+            ⚙️ Settings
+          </button>
+          <hr />
+          <button (click)="logout()" class="profile-menu-item logout-item">
+            🚪 Logout
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
