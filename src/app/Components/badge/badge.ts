@@ -3,6 +3,8 @@ import { BadgeService } from '../../Services/badge-service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { QuestService } from '../../Services/quest-service';
+import { Quests } from '../quests/quests';
 
 export interface BadgeModel{
   uuid:string,
@@ -25,7 +27,8 @@ export class Badge implements OnInit{
   badges: BadgeModel[] = [];
   uuid:any;
   selectedBadge: BadgeModel | null = null;
-constructor(private badgesevice: BadgeService,private  route:Router) {}
+  quets:any[]=[];
+constructor(private badgesevice: BadgeService,private  route:Router,private qustService:QuestService) {}
 ngOnInit(): void {
   this.uuid=JSON.parse(localStorage.getItem('userinfo')|| '')
  this.badgesevice.getBadgedata().subscribe({
@@ -36,6 +39,9 @@ ngOnInit(): void {
     console.log(this.badges);
   }
  })
+
+
+ 
 }
   setdata(){
     console.log("working");
@@ -65,6 +71,16 @@ this.badges.push(body)
 
   viewBadge(b: any){
     this.selectedBadge = b;
+    console.log(this.selectedBadge);
+    this.qustService.getQuest().subscribe({
+  next:(res:any)=>{
+    this.quets=res;
+    this.quets=this.quets.filter((arr)=>arr.bid==this.selectedBadge?.bid)
+    console.log(this.quets);
+    
+  }
+ })
+    
   }
 
   editBadge(b: any){

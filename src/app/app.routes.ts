@@ -16,5 +16,5 @@ export const routes: Routes = [
     {path:"lessons" , component:Lessons},
     {path:'dashboard',component:Dashboard},
   ]},
-  { path: '**', redirectTo: 'home/dashboard' },
+  { path: '**', redirectTo: 'login' },
 ];

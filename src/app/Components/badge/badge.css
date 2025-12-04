@@ -98,10 +98,12 @@
 .badge-actions{display:flex;gap:8px;margin-top:8px}
 
 .badge-detail{
-	background:#fff;
-	border:1px solid #eee;
+	background:#ffffff;
+	border:1px solid #00c2e4;
 	border-radius:8px;
 	padding:12px;
+	width: 100%;height: 350px;
+	
 }
 
 @media (max-width:520px){
@@ -109,3 +111,9 @@
 	.search-input, .filter-input{width:100%}
 }
 
+
+
+.img{
+	width: 100px;
+	height: 100px;
+}

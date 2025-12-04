@@ -23,8 +23,17 @@
         </div>
     </div>
 
-    <div class="badge-detail" *ngIf="selectedBadge">
-        <h2>{{ selectedBadge.name }}</h2>
-        <p>{{ selectedBadge.info }}</p>
+    <div class="badge-detail" >
+      <div class="badge">
+        <img src="assets/pic1.png" alt="pic 1" class="img">
+        <p>{{selectedBadge?.name}}</p>
+        <p>{{selectedBadge?.date | date}}</p>
+      </div>
+      <div class="quests">
+        <div *ngFor="let quest of quets">
+            <p style="color: red;">{{quest.id}}</p>
+            
+        </div>
+      </div>
     </div>
 </div>
