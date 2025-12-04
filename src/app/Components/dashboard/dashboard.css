@@ -1,0 +1,26 @@
+/* Dashboard styles */
+.dashboard{display:flex;flex-direction:column;gap:20px;padding:12px}
+.stats{display:flex;gap:16px}
+.stat-card{flex:1;background:linear-gradient(180deg,#fff,#f7fbff);border-radius:12px;padding:18px;box-shadow:0 6px 18px rgba(12,20,40,0.06);display:flex;flex-direction:column;gap:6px}
+.stat-card .stat-title{font-size:0.9rem;color:#6b7280}
+.stat-card .stat-value{font-size:2rem;font-weight:700;color:#111}
+.stat-card .stat-sub{font-size:0.85rem;color:#6b7280}
+.stat-card.badges{border-left:4px solid #5b8def}
+.stat-card.quests{border-left:4px solid #ff7a2b}
+.stat-card.lessons{border-left:4px solid #7b61f6}
+
+.panels{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.panel{background:#fff;border-radius:12px;padding:12px;box-shadow:0 6px 18px rgba(12,20,40,0.04)}
+.panel h3{margin:0 0 8px 0;font-size:1.05rem}
+.items{display:flex;flex-direction:column;gap:8px;max-height:320px;overflow:auto;padding-right:6px}
+.item{display:flex;align-items:center;gap:12px;padding:8px;border-radius:8px;transition:transform .12s ease,box-shadow .12s ease}
+.item:hover{transform:translateY(-4px);box-shadow:0 8px 20px rgba(12,20,40,0.06)}
+.icon{width:44px;height:44px;border-radius:8px;background:linear-gradient(135deg,#eef2ff,#fff);display:flex;align-items:center;justify-content:center;font-size:18px}
+.meta{flex:1}
+.meta .title{font-weight:600}
+.meta .sub{font-size:0.85rem;color:#6b7280}
+.btn.ghost{background:transparent;border:1px solid #e5e7eb;padding:6px 8px;border-radius:6px;cursor:pointer}
+.empty{color:#9ca3af;padding:8px}
+
+@media(max-width:900px){.panels{grid-template-columns:1fr 1fr}.stats{flex-direction:column}}
+@media(max-width:560px){.panels{grid-template-columns:1fr}.stats{flex-direction:column}}

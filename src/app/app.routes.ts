@@ -6,11 +6,12 @@ import { Quests } from './Components/quests/quests';
 import { Badge } from './Components/badge/badge';
 import { Lessons } from './Components/lessons/lessons';
 import { Dashboard } from './Components/dashboard/dashboard';
+import { AuthGuard } from './Guards/auth.guard';
 
 export const routes: Routes = [
   {path:'login',component:Login},
   {path:'register',component:Register},
-  {path:'home',component:Home, children:[
+  {path:'home', component:Home, canActivate: [AuthGuard], children:[
     {path:"badge" , component:Badge},
     {path:"quests" , component:Quests},
     {path:"lessons" , component:Lessons},

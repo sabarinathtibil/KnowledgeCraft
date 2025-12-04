@@ -1,1 +1,66 @@
-<h1>total badges create {{badges.length}}</h1>
+<div class="dashboard"> 
+	<div class="stats">
+		<div class="stat-card badges">
+			<div class="stat-title">Badges</div>
+			<div class="stat-value">{{ badgeCount }}</div>
+			<div class="stat-sub">Total badges you created</div>
+		</div>
+		<div class="stat-card quests">
+			<div class="stat-title">Quests</div>
+			<div class="stat-value">{{ questCount }}</div>
+			<div class="stat-sub">Associated quests</div>
+		</div>
+		<div class="stat-card lessons">
+			<div class="stat-title">Lessons</div>
+			<div class="stat-value">{{ lessonCount }}</div>
+			<div class="stat-sub">Total lessons</div>
+		</div>
+	</div>
+
+	<div class="panels">
+		<section class="panel recent-badges">
+			<h3>Recent Badges</h3>
+			<div class="items">
+				<div class="item" *ngFor="let b of recentBadges">
+					<div class="icon">🏅</div>
+					<div class="meta">
+						<div class="title">{{ b.name }}</div>
+						<div class="sub">{{ b.date }}</div>
+					</div>
+					<button class="btn ghost" (click)="openBadge(b)">Open</button>
+				</div>
+				<div *ngIf="recentBadges.length === 0" class="empty">No badges yet</div>
+			</div>
+		</section>
+
+		<section class="panel recent-quests">
+			<h3>Recent Quests</h3>
+			<div class="items">
+				<div class="item" *ngFor="let q of recentQuests">
+					<div class="icon">🎯</div>
+					<div class="meta">
+						<div class="title">{{ q.qname || q.title }}</div>
+						<div class="sub">{{ q.qid || q.id }}</div>
+					</div>
+					<button class="btn ghost" (click)="openQuest(q)">Open</button>
+				</div>
+				<div *ngIf="recentQuests.length === 0" class="empty">No quests yet</div>
+			</div>
+		</section>
+
+		<section class="panel recent-lessons">
+			<h3>Recent Lessons</h3>
+			<div class="items">
+				<div class="item" *ngFor="let l of recentLessons">
+					<div class="icon"></div>
+					<div class="meta">
+						<div class="title">{{ l.lname }}</div>
+						<div class="sub">{{ l.lid }}</div>
+					</div>
+					<button class="btn ghost" (click)="openLesson(l)">Open</button>
+				</div>
+				<div *ngIf="recentLessons.length === 0" class="empty">No lessons yet</div>
+			</div>
+		</section>
+	</div>
+</div>

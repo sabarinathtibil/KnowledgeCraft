@@ -1,30 +1,31 @@
 <div class="badge-container">
     <div class="toolbar">
         <div class="toolbar-left">
-            <input class="search-input" type="text" placeholder="enter  badge name." [(ngModel)]="lessonName" />
-            <input class="filter-input" type="text" placeholder="enter info...." [(ngModel)]="lessonLink" />
-              <button class="btn primary" type="button" (click)="CreateBadge()">Add Quests</button>
+            <input class="search-input" type="text" placeholder="enter lesson name." [(ngModel)]="lessonName" />
+            <input class="filter-input" type="text" placeholder="enter lesson link..." [(ngModel)]="lessonLink" />
+            <button class="btn primary" type="button" (click)="addLesson()">Add Lesson</button>
         </div>
-        <!-- <div class="toolbar-right">
-            <button class="btn primary" type="button" (click)="addBadge()">Add Badge</button>
-        </div> -->
+        <div class="toolbar-right">
+            <!-- <button class="btn" type="button" (click)="addMultipleLessons()" [disabled]="lessons.length === 0">Save All</button> -->
+            <button class="btn primary" type="button" (click)="createBadge()">Create Badge</button>
+        </div>
     </div>
 
     <div class="badges-grid">
+        <h1 *ngIf="lessonData.length==0" style="margin: auto;">no lessons found!</h1>
         <div class="badge-card" *ngFor="let b of lessonData">
             <div class="badge-icon">{{ '🏅' }}</div>
             <div class="badge-body">
                 <h3 class="badge-title">{{ b.lname }}</h3>
+                <a [href]="b.link">{{b.link}}</a>
                 <p class="badge-desc">{{ b.status }}</p>
                 <div class="badge-actions">
                     <button class="btn">View</button>
                 </div>
+                <button class="btn" (click)="markAsComplete(b.lid)">mark as Complete</button>
             </div>
         </div>
     </div>
 
-    <!-- <div class="badge-detail" *ngIf="selectedBadge">
-        <h2>{{ selectedBadge.name }}</h2>
-        <p>{{ selectedBadge.info }}</p>
-    </div> -->
+
 </div>

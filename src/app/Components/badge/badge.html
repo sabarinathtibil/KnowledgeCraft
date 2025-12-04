@@ -3,11 +3,8 @@
         <div class="toolbar-left">
             <input class="search-input" type="text" placeholder="enter  badge name." [(ngModel)]="name" />
             <input class="filter-input" type="text" placeholder="enter info...." [(ngModel)]="info" />
-              <button class="btn primary" type="button" (click)="addBadge()">Add Badge</button>
-        </div>
-        <!-- <div class="toolbar-right">
             <button class="btn primary" type="button" (click)="addBadge()">Add Badge</button>
-        </div> -->
+        </div>
     </div>
 
     <div class="badges-grid">
@@ -17,6 +14,7 @@
                 <h3 class="badge-title">{{ b.name }}</h3>
                 <p class="badge-desc">{{ b.info }}</p>
                 <div class="badge-actions">
+                    <button type="button" class="btn" (click)="gotoQuests(b.bid)">add quets</button>
                     <button class="btn" (click)="viewBadge(b)">View</button>
                 </div>
             </div>
@@ -24,25 +22,25 @@
     </div>
 
     <div class="detail-container" *ngIf="selectedBadge">
-      <div class="badge-detail">
-        <img src="assets/pic1.png" alt="pic 1" class="badge-img">
-        <h2>{{selectedBadge.name }}</h2>
-        <p class="badge-date">Created: {{selectedBadge.date | date}}</p>
-        <p class="badge-info">{{selectedBadge.info}}</p>
-      </div>
-      
-      <div class="quests-section">
-        <h3 class="quests-title">Associated Quests</h3>
-        <div class="quests-grid">
-          <div class="quest-card" *ngFor="let quest of quets">
-            <img src="assets/pic1.png" alt="quest" class="quest-img">
-            <div class="quest-content">
-              <h4 class="quest-name">{{quest.qname}}</h4>
-              <p class="quest-id">ID: {{quest.qid}}</p>
-              <p class="quest-desc">{{quest.description || 'Complete this quest'}}</p>
-            </div>
-          </div>
+        <div class="badge-detail">
+            <img src="assets/pic1.png" alt="pic 1" class="badge-img">
+            <h2>{{selectedBadge.name }}</h2>
+            <p class="badge-date">Created: {{selectedBadge.date | date}}</p>
+            <p class="badge-info">{{selectedBadge.info}}</p>
         </div>
-      </div>
+
+        <div class="quests-section">
+            <h3 class="quests-title">Associated Quests</h3>
+            <div class="quests-grid">
+                <div class="quest-card" *ngFor="let quest of quests">
+                    <img src="assets/pic1.png" alt="quest" class="quest-img">
+                    <div class="quest-content">
+                        <h4 class="quest-name">{{quest.qname}}</h4>
+                        <p class="quest-id">ID: {{quest.qid}}</p>
+                        <p class="quest-desc">{{quest.description || 'Complete this quest'}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

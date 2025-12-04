@@ -1,6 +1,5 @@
-
 <form [formGroup]="userform">
-<h1>Registration Page</h1>
+  <h1>Registration Page</h1>
 
   <input type="text" formControlName="name" placeholder="Enter name">
   <div *ngIf="userform.controls['name'].invalid && userform.controls['name'].touched">

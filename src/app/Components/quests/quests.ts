@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { QuestService } from '../../Services/quest-service';
-import { CommonModule } from '@angular/common';
+import { CommonModule} from '@angular/common';
 
 export interface QuestModel {
   bid: string;
@@ -24,7 +24,6 @@ export class Quests implements OnInit{
   questDesc: string = '';
   questData: any[] = []
   bid: string = '';
-
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -32,6 +31,8 @@ export class Quests implements OnInit{
   ) {
   
   }
+
+
   ngOnInit(): void {
       this.route.queryParams.subscribe((p) => {
       this.bid = p['bid'];
@@ -39,6 +40,7 @@ export class Quests implements OnInit{
     this.questService.getQuest().subscribe({
       next:(res:any)=>{
         this.questData=res;
+      this.questData=this.questData.filter((arr)=>arr.bid==this.bid);
       }
     })
   }
@@ -52,14 +54,17 @@ export class Quests implements OnInit{
       date: new Date().getDate().toString(),
     };
     this.questData.push(Quest)
-    console.log(this.questName);
-    console.log(Quest);
-    this.questService.postQuest(Quest).subscribe((res) => {
-      console.log(res);
-    })
 
+    this.questService.postQuest(Quest).subscribe((res) => {
+    })
     this.router.navigate(['/home/lessons'], {
       queryParams: { qid: Quest.qid }
+    })
+  }
+
+  goToLesson2(qid:string){
+     this.router.navigate(['/home/lessons'], {
+      queryParams: {qid }
     })
   }
 }

@@ -16,7 +16,7 @@ export interface lessonModel {
 
 @Component({
   selector: 'app-lessons',
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './lessons.html',
   styleUrl: './lessons.css',
 })
@@ -24,29 +24,36 @@ export class Lessons implements OnInit {
   lessonName: string = '';
   lessonLink: string = '';
   qid: string = '';
-  lessonData:any[]=[]
+  lessonData: any[] = [];
+  lessons: lessonModel[] = [];
   constructor(
     private http: HttpClient,
     private route: ActivatedRoute,
     private lessonService: LessonService,
-    private router:Router
+    private router: Router
   ) {
-   
+
   }
 
   ngOnInit(): void {
-     this.route.queryParams.subscribe((para) => {
+    this.route.queryParams.subscribe((para) => {
       this.qid = para['qid'];
     });
 
     this.lessonService.getLesson().subscribe({
-      next:(res:any)=>{
-        this.lessonData=res
+      next: (res: any) => {
+        this.lessonData = res
+        this.lessonData = this.lessonData.filter((arr) => arr.qid == this.qid);
       }
     })
   }
 
-  CreateBadge() {
+  addLesson() {
+    if (!this.lessonName || !this.lessonLink) {
+      alert('Please fill in lesson name and link');
+      return;
+    }
+
     let lesson: lessonModel = {
       qid: this.qid,
       lid: Date.now().toString(),
@@ -56,11 +63,26 @@ export class Lessons implements OnInit {
       link: this.lessonLink,
     };
 
-    this.lessonData.push(lesson)
-    console.log(lesson);
-    this.lessonService.postLesson(lesson).subscribe((data)=>{
-      console.log(data);
-      this.router.navigate(['/home'])
-    })
+    this.lessonData.push(lesson);
+    this.lessons.push(lesson);
+    this.lessonService.postLesson(lesson).subscribe((data) => {
+      this.lessonName = '';
+      this.lessonLink = '';
+    });
+  }
+
+  addMultipleLessons() {
+    this.lessons.forEach((lesson) => {
+      this.lessonService.postLesson(lesson).subscribe((data) => {
+      });
+    });
+    this.lessons = [];
+  }
+
+  createBadge() {
+    this.router.navigate(['/home/badge']);
+  }
+  markAsComplete(lid: string) {
+    console.log("woking", lid);
   }
 }

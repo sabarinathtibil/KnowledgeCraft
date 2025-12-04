@@ -10,16 +10,16 @@ import { Router, RouterLink } from '@angular/router';
   templateUrl: './register.html',
   styleUrl: './register.css',
 })
-export class Register {  
+export class Register {
   emailExistsError = false;
 
-  constructor(private loginService: LoginService,private route:Router) { }
+  constructor(private loginService: LoginService, private route: Router) { }
 
   userform = new FormGroup({
-  name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-  email: new FormControl('', [Validators.required, Validators.email]),
-  password: new FormControl('', [Validators.required, Validators.minLength(6)])
-});
+    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required, Validators.minLength(6)])
+  });
 
   checkEmailExists = (control: AbstractControl): Promise<ValidationErrors | null> => {
     if (!control.value) {
@@ -43,49 +43,43 @@ export class Register {
       });
     });
   }
-
-regesterUser() {
-  if (this.userform.invalid) {
-    alert('Please fill out all required fields correctly');
-    return;
-  }
-
-  const email = this.userform.get('email')?.value || '';
-  
-  // Check if email already exists
-  this.loginService.checkEmailExists(email).subscribe({
-    next: (res: any) => {
-      if (res && res.length > 0) {
-        alert('Email already exists. Please use a different email.');
-        this.emailExistsError = true;
-        return;
-      }
-
-      // Email doesn't exist, proceed with registration
-      let body: Task = {
-        id: Date.now().toString(),
-        name: this.userform.get('name')?.value || '',
-        email: this.userform.get('email')?.value || '',
-        password: this.userform.get('password')?.value || ''
-      }
-      
-      this.loginService.addUser(body).subscribe({
-        next: (res) => {
-          console.log(res);
-          alert('Registration successful!');
-          this.userform.reset();
-          this.route.navigateByUrl('login')
-        },
-        error: (err) => {
-          console.log(err);
-          alert('Registration failed. Please try again.');
-        }
-      })
-    },
-    error: (err) => {
-      console.log(err);
-      alert('Could not verify email. Please try again.');
+  regesterUser() {
+    if (this.userform.invalid) {
+      alert('Please fill out all required fields correctly');
+      return;
     }
-  });
-}
+    const email = this.userform.get('email')?.value || '';
+    // Check if email already exists
+    this.loginService.checkEmailExists(email).subscribe({
+      next: (res: any) => {
+        if (res && res.length > 0) {
+          alert('Email already exists. Please use a different email.');
+          this.emailExistsError = true;
+          return;
+        }
+
+        // Email doesn't exist, proceed with registration
+        let body: Task = {
+          id: Date.now().toString(),
+          name: this.userform.get('name')?.value || '',
+          email: this.userform.get('email')?.value || '',
+          password: this.userform.get('password')?.value || ''
+        }
+
+        this.loginService.addUser(body).subscribe({
+          next: (res) => {
+            alert('Registration successful!');
+            this.userform.reset();
+            this.route.navigateByUrl('login')
+          },
+          error: (err) => {
+            alert('Registration failed. Please try again.');
+          }
+        })
+      },
+      error: (err) => {
+        alert('Could not verify email. Please try again.');
+      }
+    });
+  }
 }

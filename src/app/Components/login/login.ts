@@ -12,7 +12,10 @@ import { flush } from '@angular/core/testing';
 })
 export class Login{
 
-  constructor(private loginService: LoginService,private route :Router) { }
+  constructor(
+    private loginService: LoginService,
+    private route :Router
+  ) { }
   username:string='';
   password:string='';
   showPopup:boolean=false;
@@ -23,7 +26,6 @@ export class Login{
       next:(res)=>{
         const user = (res as any[]).find((u: any) => u.email === this.username && u.password === this.password);
         if (user) {
-          console.log('Login successful', user);
           localStorage.setItem('userinfo',JSON.stringify(user));
           this.route.navigateByUrl('home/dashboard')
         } else {
@@ -48,7 +50,5 @@ export class Login{
 
   reg(){
     this.route.navigateByUrl('register')
-    // console.log("workin");
-    
   }
 }
