@@ -5,7 +5,7 @@ import { RouterOutlet, RouterLinkWithHref, RouterLink } from '@angular/router';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, Badge],
+  imports: [RouterOutlet, RouterLink,],
   templateUrl: './home.html',
   styleUrls: ['./home.css'],
 })

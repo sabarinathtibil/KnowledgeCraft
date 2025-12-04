@@ -23,16 +23,25 @@
         </div>
     </div>
 
-    <div class="badge-detail" >
-      <div class="badge">
-        <img src="assets/pic1.png" alt="pic 1" class="img">
-        <p>{{selectedBadge?.name}}</p>
-        <p>{{selectedBadge?.date | date}}</p>
+    <div class="detail-container" *ngIf="selectedBadge">
+      <div class="badge-detail">
+        <img src="assets/pic1.png" alt="pic 1" class="badge-img">
+        <h2>{{selectedBadge.name }}</h2>
+        <p class="badge-date">Created: {{selectedBadge.date | date}}</p>
+        <p class="badge-info">{{selectedBadge.info}}</p>
       </div>
-      <div class="quests">
-        <div *ngFor="let quest of quets">
-            <p style="color: red;">{{quest.id}}</p>
-            
+      
+      <div class="quests-section">
+        <h3 class="quests-title">Associated Quests</h3>
+        <div class="quests-grid">
+          <div class="quest-card" *ngFor="let quest of quets">
+            <img src="assets/pic1.png" alt="quest" class="quest-img">
+            <div class="quest-content">
+              <h4 class="quest-name">{{quest.qname}}</h4>
+              <p class="quest-id">ID: {{quest.qid}}</p>
+              <p class="quest-desc">{{quest.description || 'Complete this quest'}}</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

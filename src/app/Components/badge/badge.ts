@@ -26,7 +26,11 @@ export class Badge implements OnInit{
   info:string='';
   badges: BadgeModel[] = [];
   uuid:any;
+  // UI bindings used in template
+  searchTerm: string = '';
+  tagFilter: string = '';
   selectedBadge: BadgeModel | null = null;
+  quests:any[]=[];
   quets:any[]=[];
 constructor(private badgesevice: BadgeService,private  route:Router,private qustService:QuestService) {}
 ngOnInit(): void {
@@ -73,22 +77,26 @@ this.badges.push(body)
     this.selectedBadge = b;
     console.log(this.selectedBadge);
     this.qustService.getQuest().subscribe({
-  next:(res:any)=>{
-    this.quets=res;
-    this.quets=this.quets.filter((arr)=>arr.bid==this.selectedBadge?.bid)
-    console.log(this.quets);
+      next:(res:any)=>{
+        this.quests=res;
+        this.quets=res;
+        this.quests=this.quests.filter((arr)=>arr.bid==this.selectedBadge?.bid)
+        this.quets=this.quests;
+        console.log(this.quests);
+      }
+    })
+  }
     
   }
- })
-    
-  }
 
-  editBadge(b: any){
-    this.name = b.name;
-    this.info = b.info;
-    this.selectedBadge = b;
-  }
+//   editBadge(b: any){
+//     this.name = b.name;
+//     this.info = b.info;
+//     this.selectedBadge = b;
+//   }
 
-
-
-}
+//   clearFilters(){
+//     this.searchTerm = '';
+//     this.tagFilter = '';
+//   }
+// }

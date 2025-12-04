@@ -25,7 +25,7 @@ export class Login{
         if (user) {
           console.log('Login successful', user);
           localStorage.setItem('userinfo',JSON.stringify(user));
-          this.route.navigateByUrl('home')
+          this.route.navigateByUrl('home/dashboard')
         } else {
           this.showPopup=true;
             this.err_msg='Invalid username or password'
